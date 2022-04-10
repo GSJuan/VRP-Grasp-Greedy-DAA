@@ -14,6 +14,12 @@ namespace Vehicle_Routing_Problem
             foreach (string filePath in Directory.GetFiles(folderPath, "*.txt"))
             {
                 Problem problema = new Problem(filePath);
+                Greedy greedy = new Greedy();
+                
+                Solution result = greedy.Solve(problema);
+                int cost = result.getCost();
+                Console.WriteLine("Total Cost: " + cost);
+
             }
             
         }

@@ -8,7 +8,7 @@ namespace Vehicle_Routing_Problem
     {
         public int nbVehicles;
         public int nbCustomers;
-        public List<List<int>> distanceMatrix = new List<List<int>>();
+        public int[][] distanceMatrix;
 
         public Problem(string fileName)
         {
@@ -18,16 +18,18 @@ namespace Vehicle_Routing_Problem
 
             nbCustomers = int.Parse(firstLine[1]);
             nbVehicles = int.Parse(secondLine[1]);
-            
+
+            distanceMatrix = new int[nbCustomers + 1][];
+
             for (int i = 3; i < lines.Length; i++)
             {
                 string[] line = lines[i].Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-                List<int> row = new List<int>();
+                distanceMatrix[i - 3] = new int[nbCustomers + 1];
                 for (int j = 0; j < line.Length; j++)
-                {
-                    row.Add(int.Parse(line[j]));
+                {                    
+                    distanceMatrix[i - 3][j] = int.Parse(line[j]);
                 }
-                distanceMatrix.Add(row);
+                
             }
         }
     }
