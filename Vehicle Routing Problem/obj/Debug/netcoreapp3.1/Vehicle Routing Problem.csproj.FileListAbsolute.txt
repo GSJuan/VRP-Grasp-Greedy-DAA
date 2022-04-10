@@ -1,0 +1,14 @@
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.exe
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.deps.json
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.runtimeconfig.json
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.runtimeconfig.dev.json
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.dll
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.pdb
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.csproj.AssemblyReference.cache
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.AssemblyInfoInputs.cache
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.AssemblyInfo.cs
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.csproj.CoreCompileInputs.cache
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.dll
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.pdb
+C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.genruntimeconfig.cache
