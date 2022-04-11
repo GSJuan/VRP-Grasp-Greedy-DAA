@@ -44,13 +44,15 @@ namespace Vehicle_Routing_Problem
                         }
                     }
 
-                    if (next != origin[i])
+                    if (next == origin[i])
                     {
-                        visited.Add(next);
-                        routes[i].Add(next);                    
-                        origin[i] = next;
-                        totalCost += minDistance;
-                    }                           
+                        break;
+                    }
+                    
+                    visited.Add(next);
+                    routes[i].Add(next);                    
+                    origin[i] = next;
+                    totalCost += minDistance;                                             
 
                 }
             }
