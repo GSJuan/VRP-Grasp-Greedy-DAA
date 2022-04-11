@@ -9,47 +9,56 @@ namespace Vehicle_Routing_Problem
     {
         public Solution Solve(Problem problem)
         {
-            List<List<int>> routes = new List<List<int>>();
-            List<int> visited = new List<int>();
             int[][] distances = problem.distanceMatrix;
             int vehicles = problem.nbVehicles;
             int customers = problem.nbCustomers;
 
+            List<List<int>> routes = new List<List<int>>();
+            List<int> visited = new List<int>();
+
+            List<int> origin = new List<int>();
             int totalCost = 0;
 
             for (int i = 0; i < vehicles; i++)
             {
                 routes.Add(new List<int>());
                 routes[i].Add(0);
-                int origin = 0;
-                do
-                {
+                origin.Add(0);
+            }
+
+            while(visited.Count < customers )
+            {
+                for (int i = 0; i < vehicles; i++)
+                {                                                            
                     int minDistance = int.MaxValue;
-                    int next = 0;
-                    for (int j = 0; j <= customers; j++)
+                    int next = origin[i];
+                    
+                    for (int j = 1; j <= customers; j++)
                     {
-                        int distance = distances[origin][j];
+                        int from = origin[i];
+                        int distance = distances[from][j];
                         if (distance != 0 && !visited.Contains(j) && distance < minDistance)
                         {
                             minDistance = distance;
                             next = j;
                         }
                     }
-                    origin = next;
 
-                    if (origin != 0 || i == vehicles - 1)
+                    if (next != origin[i])
                     {
-                        visited.Add(origin);
-                    }
-                    
-                    routes[i].Add(origin);
-                    
-                    if (minDistance != int.MaxValue)
-                    {
+                        visited.Add(next);
+                        routes[i].Add(next);                    
+                        origin[i] = next;
                         totalCost += minDistance;
-                    }                
+                    }                           
 
-                } while (origin != 0);
+                }
+            }
+
+            for (int i = 0; i < vehicles; i++)
+            {
+                totalCost += distances[routes[i].Last()][0];
+                routes[i].Add(0);
                 
             }
 
