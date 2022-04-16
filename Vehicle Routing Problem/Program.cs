@@ -48,7 +48,7 @@ namespace Vehicle_Routing_Problem
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine("Total Greedy Cost: " + graspCost);
+                Console.WriteLine("Total Grasp Cost: " + graspCost);
 
                 bigTable.PrintLine();
 
