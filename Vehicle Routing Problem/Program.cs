@@ -30,6 +30,7 @@ namespace Vehicle_Routing_Problem
                         Console.Write(greedyResult.getRoutes()[i][j] + " ");
                     }
                     Console.WriteLine();
+                    Console.WriteLine();
                 }
                 Console.WriteLine("Total Greedy Cost: " + greedyCost);
                                                
@@ -46,6 +47,7 @@ namespace Vehicle_Routing_Problem
                     {
                         Console.Write(graspResult.getRoutes()[i][j] + " ");
                     }
+                    Console.WriteLine();
                     Console.WriteLine();
                 }
                 Console.WriteLine("Total Grasp Cost: " + graspCost);

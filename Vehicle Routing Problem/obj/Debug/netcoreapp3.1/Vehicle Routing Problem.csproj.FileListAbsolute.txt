@@ -12,3 +12,17 @@ C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debu
 C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.dll
 C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.pdb
 C:\Users\Juan\source\repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.genruntimeconfig.cache
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.exe
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.deps.json
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.runtimeconfig.json
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.runtimeconfig.dev.json
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.dll
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\bin\Debug\netcoreapp3.1\Vehicle Routing Problem.pdb
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.csproj.AssemblyReference.cache
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.AssemblyInfoInputs.cache
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.AssemblyInfo.cs
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.csproj.CoreCompileInputs.cache
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.dll
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.pdb
+C:\Users\skate\Source\Repos\VRP-Grasp-Greedy-DAA\Vehicle Routing Problem\obj\Debug\netcoreapp3.1\Vehicle Routing Problem.genruntimeconfig.cache

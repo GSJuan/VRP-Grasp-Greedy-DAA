@@ -11,17 +11,31 @@ namespace Vehicle_Routing_Problem
         {
             //int stop = 0;
             Solution solution;
-            
+            int limit = 0;
+            int minCost;
+            Solution bestSolution;
+
             //preprocesamiento
-            //do
-            //{
+            solution = ConstructGreedyRandomizedSolution(problem);
+            minCost = solution.getCost();
+            bestSolution = solution;
+            do
+            {
                 solution = ConstructGreedyRandomizedSolution(problem);
+                limit++;
+
+                if (solution.getCost() < minCost)
+                {
+                    minCost = solution.getCost();
+                    bestSolution = solution;
+                }                               
+
                 //LocalSearch (solution)
                 //UpdateSolution(Solution,BestSolutionFound);
 
-            //} while (stop == 0 /* Criterio de parada del grasp */);
+            } while (limit <= 5000);
 
-            return solution;
+            return bestSolution;
         }
 
         private Solution ConstructGreedyRandomizedSolution(Problem problem)
