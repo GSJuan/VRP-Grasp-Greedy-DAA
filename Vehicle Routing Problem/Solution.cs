@@ -6,8 +6,8 @@ namespace Vehicle_Routing_Problem
 {
     public class Solution        
     {
-        List<List<int>> routes = new List<List<int>>();
-        int cost;
+        public List<List<int>> routes = new List<List<int>>();
+        public int cost;
         public Solution (List<List<int>> routes, int cost)
         {
             this.routes = routes;

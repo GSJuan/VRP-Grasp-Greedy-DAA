@@ -14,26 +14,30 @@ namespace Vehicle_Routing_Problem
             int limit = 0;
             int minCost;
             Solution bestSolution;
+            EnvironmentStructure structure;
+            int[][] distanceMatrix = problem.distanceMatrix;
 
+            structure = new ReinsercionIntra();
+            
             //preprocesamiento
             solution = ConstructGreedyRandomizedSolution(problem);
             minCost = solution.getCost();
             bestSolution = solution;
-            do
-            {
-                solution = ConstructGreedyRandomizedSolution(problem);
-                limit++;
+            
+            while (limit <= 5000) {
+
+                solution = structure.LocalSearch(solution, ref distanceMatrix);
 
                 if (solution.getCost() < minCost)
                 {
                     minCost = solution.getCost();
                     bestSolution = solution;
-                }                               
+                }
 
-                //LocalSearch (solution)
-                //UpdateSolution(Solution,BestSolutionFound);
-
-            } while (limit <= 5000);
+                solution = ConstructGreedyRandomizedSolution(problem);
+                
+                limit++;
+            } 
 
             return bestSolution;
         }
