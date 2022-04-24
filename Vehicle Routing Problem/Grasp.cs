@@ -17,7 +17,7 @@ namespace Vehicle_Routing_Problem
             EnvironmentStructure structure;
             int[][] distanceMatrix = problem.distanceMatrix;
 
-            structure = new ReinsercionEntre();
+            structure = new IntercambioIntra();
             
             //preprocesamiento
             solution = ConstructGreedyRandomizedSolution(problem);
