@@ -24,19 +24,21 @@ namespace Vehicle_Routing_Problem
             minCost = solution.getCost();
             bestSolution = solution;
             
-            while (limit <= 5000) {
+            while (limit <= 2000) {
 
+                limit++;
                 solution = structure.LocalSearch(solution, ref distanceMatrix);
 
                 if (solution.getCost() < minCost)
                 {
+                    limit = 0;
                     minCost = solution.getCost();
                     bestSolution = solution;
                 }
 
                 solution = ConstructGreedyRandomizedSolution(problem);
                 
-                limit++;
+                
             } 
 
             return bestSolution;

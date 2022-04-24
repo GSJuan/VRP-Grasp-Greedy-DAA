@@ -9,28 +9,32 @@ namespace Vehicle_Routing_Problem
         public Solution LocalSearch(Solution solution, ref int[][] distanceMatrix)
         {
             Solution bestSolution = solution;
-            List<List<int>> routes = solution.routes;
+            int size = solution.routes.Count;
             int cost = solution.cost;
 
-            for (int k = 0; k < routes.Count; k++)
+            for (int i = 0; i < size; i++)
             {
-                List<int> route = routes[k];
-                for (int i = 1; i < route.Count - 1; i++)
+                List<int> route = new List<int>(solution.routes[i]);
+                
+                for (int j = 1; j < route.Count - 1; j++)
                 {
-                    for (int j = i + 1; j < route.Count - 1; j++)
+                    for (int k = j + 1; k < route.Count - 1; k++)
                     {
-                        List<int> newRoute = route;
-                        int previousCost = distanceMatrix[route[i - 1]][route[i]];
-                        int nextCost = distanceMatrix[route[i]][route[i + 1]];
-                        newRoute.RemoveAt(i);
-                        newRoute.Insert(j, route[i]);
-                        int newCost = cost - previousCost - nextCost;
-                        newCost += distanceMatrix[newRoute[j - 1]][newRoute[j]] + distanceMatrix[newRoute[j]][newRoute[j + 1]];
+                        List<int> newRoute = new List<int>(route);
                         
-                        if (cost < bestSolution.cost)
+                        int fromPreviousCost = distanceMatrix[route[j - 1]][route[j]];
+                        int toPreviousCost = distanceMatrix[route[j]][route[j + 1]];
+                        
+                        newRoute.RemoveAt(j);
+                        newRoute.Insert(k, route[j]);
+
+                        int newCost = cost - fromPreviousCost - toPreviousCost + distanceMatrix[route[j - 1]][route[j + 1]];
+                        newCost += distanceMatrix[newRoute[k - 1]][newRoute[k]] + distanceMatrix[newRoute[k]][newRoute[k + 1]];
+                        
+                        if (newCost < bestSolution.cost)
                         {
-                            List<List<int>> bestRoutes = routes;
-                            bestRoutes[k] = newRoute;
+                            List<List<int>> bestRoutes = new List<List<int>>(solution.routes);
+                            bestRoutes[i] = newRoute;
                             bestSolution = new Solution(bestRoutes, newCost);
                         }
                     }
