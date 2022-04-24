@@ -26,7 +26,7 @@ namespace Vehicle_Routing_Problem
                 origin.Add(0);
             }
 
-            while(visited.Count < customers )
+            while(visited.Count < customers)
             {
                 for (int i = 0; i < vehicles; i++)
                 {                                                            
