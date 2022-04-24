@@ -50,6 +50,8 @@ namespace Vehicle_Routing_Problem
             int vehicles = problem.nbVehicles;
             int customers = problem.nbCustomers;
 
+            int capacity = (int)((customers / vehicles) + (customers * 0.1));
+
             List<List<int>> routes = new List<List<int>>();
             List<int> visited = new List<int>();
 
@@ -68,7 +70,12 @@ namespace Vehicle_Routing_Problem
             while (visited.Count < customers)
             {
                 for (int i = 0; i < vehicles; i++)
-                {                  
+                {
+                    if (routes[i].Count > capacity)
+                    {
+                        continue;
+                    } 
+
                     List<int> candidates = new List<int>();
                     List<int> candidatesCost = new List<int>();
 
