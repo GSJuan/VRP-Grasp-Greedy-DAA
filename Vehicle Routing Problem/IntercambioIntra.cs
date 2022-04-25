@@ -18,7 +18,7 @@ namespace Vehicle_Routing_Problem
 
                 for (int j = 1; j < route.Count - 1; j++)
                 {
-                    for (int k = j + 1; k < route.Count - 1; k++)
+                    for (int k = 1; k < route.Count - 1; k++)
                     {
                         List<int> newRoute = new List<int>(route);
 
