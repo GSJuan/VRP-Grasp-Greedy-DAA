@@ -26,14 +26,6 @@ namespace Vehicle_Routing_Problem
                     {
                         if (k == j) continue;
                         
-                        int from = route[j - 1];
-                        int to = route[j + 1];
-                        int origin = route[j];
-
-                        int destination = route[k];
-                        int nextDestination = route[k + 1];
-
-
                         int fromPreviousCost = distanceMatrix[route[j - 1]][route[j]];
                         int toPreviousCost = distanceMatrix[route[j]][route[j + 1]];
                                               
