@@ -31,7 +31,6 @@ namespace Vehicle_Routing_Problem
                                               
                         int originNextCost = distanceMatrix[route[j - 1]][route[j + 1]];
 
-
                         int destinationPreviousCost = distanceMatrix[route[k - 1]][route[k]];
 
                         int fromNextCost = distanceMatrix[route[k - 1]][route[j]];
