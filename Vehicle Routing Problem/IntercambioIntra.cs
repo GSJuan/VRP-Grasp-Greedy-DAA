@@ -24,10 +24,8 @@ namespace Vehicle_Routing_Problem
                 for (int j = 1; j < route.Count - 1; j++)
                 {
                     for (int k = j + 1; k < route.Count - 1; k++)
-                    {
-                        
-
-                        
+                    {                     
+                       
                         int fromLeftPreviousCost = distanceMatrix[route[j - 1]][route[j]];
                         int toLeftPreviousCost = distanceMatrix[route[j]][route[j + 1]];
 
@@ -40,15 +38,13 @@ namespace Vehicle_Routing_Problem
                         
                         int fromRightNewCost = distanceMatrix[route[k - 1]][route[j]];
                         int toRightNewCost = distanceMatrix[route[j]][route[k + 1]];
-
-
                        
                         if(k - 1 == j)
                         {
                             fromRightPreviousCost = 0;
-
+                            
                             toLeftNewCost = 0;
-                            fromRightNewCost = distanceMatrix[route[j]][route[k]];
+                            fromRightNewCost = distanceMatrix[route[k]][route[j]];
                         }
                        
                         int newCost = cost - fromLeftPreviousCost - toLeftPreviousCost - fromRightPreviousCost - toRightPreviousCost;
