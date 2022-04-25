@@ -8,41 +8,56 @@ namespace Vehicle_Routing_Problem
     {
         public Solution LocalSearch(Solution solution, ref int[][] distanceMatrix)
         {
-            Solution bestSolution = solution;
             int size = solution.routes.Count;
             int cost = solution.cost;
 
+            int bestCost = cost;
+            int bestRouteIndex = -1;
+            int bestOriginIndex = -1;
+            int bestDestinationIndex = -1;
+
             for (int i = 0; i < size; i++)
             {
-                List<int> route = new List<int>(solution.routes[i]);
+                List<int> route = solution.routes[i];
                 
                 for (int j = 1; j < route.Count - 1; j++)
                 {
                     for (int k = 1; k < route.Count - 1; k++)
                     {
                         if (k == j) continue;
-
-                        List<int> newRoute = new List<int>(route);
                         
                         int fromPreviousCost = distanceMatrix[route[j - 1]][route[j]];
                         int toPreviousCost = distanceMatrix[route[j]][route[j + 1]];
-                        
-                        newRoute.RemoveAt(j);
-                        newRoute.Insert(k, route[j]);
+                        int destinationPreviousCost = distanceMatrix[route[k]][route[k + 1]];
 
-                        int newCost = cost - fromPreviousCost - toPreviousCost + distanceMatrix[route[j - 1]][route[j + 1]] - distanceMatrix[route[k - 1]][route[k]];
-                        newCost += distanceMatrix[newRoute[k - 1]][newRoute[k]] + distanceMatrix[newRoute[k]][newRoute[k + 1]];
-                        
-                        if (newCost < bestSolution.cost)
+                        int newCost = cost - fromPreviousCost - toPreviousCost - destinationPreviousCost;
+
+                        int originNextCost = distanceMatrix[route[j - 1]][route[j + 1]];
+                        int fromNextCost = distanceMatrix[route[k]][route[j]];
+                        int toNextCost = distanceMatrix[route[j]][route[k + 1]];
+                        newCost += originNextCost + fromNextCost + toNextCost;
+
+                        if (newCost < bestCost)                            
                         {
-                            List<List<int>> bestRoutes = new List<List<int>>(solution.routes);
-                            bestRoutes[i] = newRoute;
-                            bestSolution = new Solution(bestRoutes, newCost);
+                            bestRouteIndex = i;
+                            bestOriginIndex = j;
+                            bestDestinationIndex = k;
+                            bestCost = newCost;
                         }
                     }
                 }
             }
-            return bestSolution;
+
+            if (bestRouteIndex >= 0 && bestOriginIndex >= 0 && bestDestinationIndex >= 0)
+            {
+                List<int> routeT = solution.routes[bestRouteIndex];
+                int temp = routeT[bestOriginIndex];
+                routeT.RemoveAt(bestOriginIndex);
+                routeT.Insert(bestDestinationIndex, temp);
+                solution.cost = bestCost;
+            }            
+
+            return solution;
         }
     }
 }
