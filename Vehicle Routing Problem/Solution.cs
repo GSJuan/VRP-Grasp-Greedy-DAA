@@ -23,5 +23,18 @@ namespace Vehicle_Routing_Problem
         {
             return cost;
         }
+        
+        public int calculateCost(ref int[][] distanceMatrix)
+        {
+            int cost = 0;
+            foreach (List<int> route in routes)
+            {
+                for (int i = 0; i < route.Count - 1; i++)
+                {
+                    cost += distanceMatrix[route[i]][route[i + 1]];
+                }
+            }
+            return cost;
+        }
     }
 }

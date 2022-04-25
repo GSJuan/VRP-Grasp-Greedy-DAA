@@ -20,8 +20,8 @@ namespace Vehicle_Routing_Problem
                 
                 Greedy greedy = new Greedy();
                 Solution greedyResult = greedy.Solve(problema);
-                int greedyCost = greedyResult.getCost();               
-
+                int greedyCost = greedyResult.getCost(); 
+                
                 for (int i = 0; i < greedyResult.getRoutes().Count; i++)
                 {
                     Console.WriteLine("Route " + i + " With length " + greedyResult.getRoutes()[i].Count + " (counting both zeros) : ");
@@ -39,6 +39,17 @@ namespace Vehicle_Routing_Problem
                 Grasp grasp = new Grasp();
                 Solution graspResult = grasp.Solve(problema);
                 int graspCost = graspResult.getCost();
+
+                int graspCalculatedCost = graspResult.calculateCost(ref problema.distanceMatrix);
+                
+                if(graspCalculatedCost == graspCost)
+                {
+                    Console.WriteLine("TRUE, " + graspCost.ToString() + " == " + graspCalculatedCost.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("FALSE, " + graspCost.ToString() + " != " + graspCalculatedCost.ToString());
+                }
 
                 for (int i = 0; i < graspResult.getRoutes().Count; i++)
                 {
