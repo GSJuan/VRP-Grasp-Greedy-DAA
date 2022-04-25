@@ -8,7 +8,6 @@ namespace Vehicle_Routing_Problem
     {
         Solution EnvironmentStructure.LocalSearch(Solution solution, ref int[][] distanceMatrix)
         {
-            Solution bestSolution = solution;
             int size = solution.routes.Count;
             int cost = solution.cost;
 
