@@ -20,6 +20,8 @@ namespace Vehicle_Routing_Problem
                 {
                     for (int k = 1; k < route.Count - 1; k++)
                     {
+                        if (k == j) continue;
+
                         List<int> newRoute = new List<int>(route);
                         
                         int fromPreviousCost = distanceMatrix[route[j - 1]][route[j]];
@@ -28,7 +30,7 @@ namespace Vehicle_Routing_Problem
                         newRoute.RemoveAt(j);
                         newRoute.Insert(k, route[j]);
 
-                        int newCost = cost - fromPreviousCost - toPreviousCost + distanceMatrix[route[j - 1]][route[j + 1]];
+                        int newCost = cost - fromPreviousCost - toPreviousCost + distanceMatrix[route[j - 1]][route[j + 1]] - distanceMatrix[route[k - 1]][route[k]];
                         newCost += distanceMatrix[newRoute[k - 1]][newRoute[k]] + distanceMatrix[newRoute[k]][newRoute[k + 1]];
                         
                         if (newCost < bestSolution.cost)

@@ -17,7 +17,7 @@ namespace Vehicle_Routing_Problem
             EnvironmentStructure structure;
             int[][] distanceMatrix = problem.distanceMatrix;
 
-            structure = new ReinsercionEntre();
+            structure = new ReinsercionIntra();
             
             //preprocesamiento
             solution = ConstructGreedyRandomizedSolution(problem);
@@ -80,7 +80,7 @@ namespace Vehicle_Routing_Problem
                     List<int> candidatesCost = new List<int>();
 
                     //construir lista de candidatos
-                    while (candidates.Count < 3)
+                    while (candidates.Count < 2)
                     {
                         int next = origin[i];
                         int minDistance = int.MaxValue;
