@@ -7,8 +7,7 @@ namespace Vehicle_Routing_Problem
     public class _2OPT : EnvironmentStructure
     {
         public Solution LocalSearch(Solution solution, ref int[][] distanceMatrix)
-        {
-            
+        {            
             return solution;
         }
         
