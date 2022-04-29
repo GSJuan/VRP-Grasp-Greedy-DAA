@@ -12,38 +12,44 @@ namespace Vehicle_Routing_Problem
             //int stop = 0;
            
             Solution bestLocal;
+            Solution local;
             Solution bestSolution;
             int limit = 0;
-            int localLimit = 0;
             EnvironmentStructure structure;
             int[][] distanceMatrix = problem.distanceMatrix;
-
-            structure = new IntercambioIntra();
+            bool improve = true;
+            
+            structure = new ReinsercionIntra();
             
             //preprocesamiento
-            bestLocal = ConstructGreedyRandomizedSolution(problem);
-            bestSolution = bestLocal;
-            
-            while (limit <= 3000) {
-                
+
+            bestSolution = ConstructGreedyRandomizedSolution(problem);
+            bestLocal = bestSolution;
+
+            while (limit <= 2000) {
+                improve = true;
                 limit++;
-                Solution local = bestLocal;
-                while (local.getCost() <= bestLocal.getCost()) {
-                    bestLocal = local;
+                
+                do
+                {
                     local = structure.LocalSearch(bestLocal, ref distanceMatrix);
-                    localLimit++;                   
-                } 
-
-               
-
+                    if(local.getCost() < bestLocal.getCost())
+                    {
+                        bestLocal = local;
+                    }
+                    else
+                    {
+                        improve = false;
+                    }
+                } while (improve);
+                
                 if (bestLocal.getCost() < bestSolution.getCost())
                 {
                     bestSolution = bestLocal;
+                    limit = 0;
                 }
 
-                bestLocal = ConstructGreedyRandomizedSolution(problem);
-                localLimit = 0;
-                
+                bestLocal = ConstructGreedyRandomizedSolution(problem);                
             } 
 
             return bestSolution;

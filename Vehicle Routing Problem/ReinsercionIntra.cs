@@ -60,11 +60,13 @@ namespace Vehicle_Routing_Problem
 
             if (bestRouteIndex >= 0 && bestOriginIndex >= 0 && bestDestinationIndex >= 0)
             {
-                List<int> routeT = solution.routes[bestRouteIndex];
+                Solution bestFromLocal = new Solution(solution);
+                List<int> routeT = bestFromLocal.routes[bestRouteIndex];
                 int temp = routeT[bestOriginIndex];
                 routeT.RemoveAt(bestOriginIndex);
                 routeT.Insert(bestDestinationIndex, temp);
-                solution.cost = bestCost;
+                bestFromLocal.cost = bestCost;
+                return bestFromLocal;
             }            
 
             return solution;
