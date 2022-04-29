@@ -10,12 +10,11 @@ namespace Vehicle_Routing_Problem
         public Solution Solve(Problem problem)
         {
             //int stop = 0;
-            Solution local;
+           
             Solution bestLocal;
-            Solution bestSolution ;
+            Solution bestSolution;
             int limit = 0;
             int localLimit = 0;
-            int minCost;
             EnvironmentStructure structure;
             int[][] distanceMatrix = problem.distanceMatrix;
 
@@ -24,30 +23,26 @@ namespace Vehicle_Routing_Problem
             //preprocesamiento
             bestLocal = ConstructGreedyRandomizedSolution(problem);
             bestSolution = bestLocal;
-            minCost = bestLocal.getCost();
             
-            while (limit <= 2000) {
-
+            while (limit <= 3000) {
+                
                 limit++;
-                do {
+                Solution local = bestLocal;
+                while (local.getCost() <= bestLocal.getCost()) {
+                    bestLocal = local;
                     local = structure.LocalSearch(bestLocal, ref distanceMatrix);
-                    localLimit++;
+                    localLimit++;                   
+                } 
 
-                    if(local.getCost() < bestLocal.getCost())
-                    {
-                        bestLocal = local;
-                    }
+               
 
-                } while (localLimit < 2000);
-
-                if (bestLocal.getCost() < minCost)
+                if (bestLocal.getCost() < bestSolution.getCost())
                 {
-                    limit = 0;
-                    minCost = bestLocal.getCost();
                     bestSolution = bestLocal;
                 }
 
-                bestLocal = ConstructGreedyRandomizedSolution(problem);               
+                bestLocal = ConstructGreedyRandomizedSolution(problem);
+                localLimit = 0;
                 
             } 
 

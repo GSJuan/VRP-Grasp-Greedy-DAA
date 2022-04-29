@@ -62,9 +62,11 @@ namespace Vehicle_Routing_Problem
 
             if (bestRouteIndex >= 0 && bestOriginIndex >= 0 && bestDestinationIndex >= 0)
             {
-                List<int> routeT = solution.routes[bestRouteIndex];
-                (routeT[bestOriginIndex], routeT[bestDestinationIndex]) = (routeT[bestDestinationIndex], routeT[bestOriginIndex]);                
-                solution.cost = bestCost;
+                Solution bestFromLocal = new Solution(solution);
+                List<int> routeT = bestFromLocal.routes[bestRouteIndex];
+                (routeT[bestOriginIndex], routeT[bestDestinationIndex]) = (routeT[bestDestinationIndex], routeT[bestOriginIndex]);
+                bestFromLocal.cost = bestCost;
+                return bestFromLocal;
             }
 
             return solution;

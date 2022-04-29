@@ -14,6 +14,13 @@ namespace Vehicle_Routing_Problem
             this.cost = cost;
         }
 
+        public Solution (Solution solution)
+        {
+            routes = new List<List<int>>();
+            for (int i = 0; i < solution.routes.Count; i++) routes.Add(new List<int>(solution.routes[i]));
+            cost = solution.cost;
+        }
+
         public List<List<int>> getRoutes()
         {
             return routes;
