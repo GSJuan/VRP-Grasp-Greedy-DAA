@@ -15,12 +15,14 @@ namespace Vehicle_Routing_Problem
             TableDrawing table = new TableDrawing(100);
             TableDrawing bigTable = new TableDrawing(75);
 
-            table.PrintRow("Problem´s FileName", "Algorithm used", "Cost", "Time in ms");
+            
 
             Stopwatch timer = new Stopwatch();
 
             foreach (string filePath in Directory.GetFiles(folderPath, "*.txt"))
             {
+                table.PrintRow("Problem´s FileName", "Algorithm used", "Cost", "Time in ms");
+                table.PrintLine();
                 string[] name = filePath.Split("\\");
                 Problem problema = new Problem(filePath);
 
@@ -94,8 +96,9 @@ namespace Vehicle_Routing_Problem
                 timer.Stop();
                 int gvnsCost = gvnsResult.GetCost();
                 table.PrintRow(name[name.Length - 1], "GVNS", gvnsCost.ToString(), $"{timer.ElapsedMilliseconds}");
-                Console.WriteLine();
-
+                
+                table.PrintSeparatingLine();
+                Console.WriteLine('\n');                
             }
 
         }

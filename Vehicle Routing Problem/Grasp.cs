@@ -4,8 +4,10 @@ using System.Linq;
 
 namespace Vehicle_Routing_Problem
 {
+    //algoritmo de resolución de problemas GRASP
     internal class Grasp : IAlgorithm
     {
+        //se puede emplear con cualquier estructura de entorno
         private EnvironmentStructure structure;
         public Grasp(EnvironmentStructure structure)
         {
@@ -13,17 +15,14 @@ namespace Vehicle_Routing_Problem
         }
         public Solution Solve(Problem problem)
         {
-            //int stop = 0;
             Solution bestLocal;
             Solution bestSolution;
 
             int limit = 0;
             EnvironmentStructure structure = this.structure;
             int[][] distanceMatrix = problem.distanceMatrix;
- 
-            //structure.Add(new _2OPT());
 
-            //preprocesamiento
+            //Inicializacion
             bestLocal = ConstructGreedyRandomizedSolution(problem);
             bestSolution = bestLocal;
             
@@ -31,13 +30,18 @@ namespace Vehicle_Routing_Problem
             while (limit <= 2000)
             {
                 limit++;
+
+                //Fase de mejora
                 bestLocal = structure.LocalSearch(bestLocal, ref distanceMatrix);
 
+                //fase de actualización
                 if (bestLocal.GetCost() < bestSolution.GetCost())
                 {
                     bestSolution = bestLocal;
                     //limit = 0;
                 }                
+
+                //Fase constructiva
                 bestLocal = ConstructGreedyRandomizedSolution(problem);                
             }
 
@@ -49,8 +53,9 @@ namespace Vehicle_Routing_Problem
             int[][] distances = problem.distanceMatrix;
             int vehicles = problem.nbVehicles;
             int customers = problem.nbCustomers;
-
             int capacity = (int)((customers / vehicles) + (customers * 0.1));
+
+            int RCL_SIZE = 2;
 
             List<List<int>> routes = new List<List<int>>();
             List<int> visited = new List<int>();
@@ -60,6 +65,7 @@ namespace Vehicle_Routing_Problem
 
             Random rnd = new Random();
 
+            //hacemos que todas las rutas partan de 0 ()
             for (int i = 0; i < vehicles; i++)
             {
                 routes.Add(new List<int>());
@@ -67,10 +73,12 @@ namespace Vehicle_Routing_Problem
                 origin.Add(0);
             }
 
+            //visitamos todos los clientes
             while (visited.Count < customers)
             {
                 for (int i = 0; i < vehicles; i++)
                 {
+                    //controlamos capacidad maxima
                     if (routes[i].Count > capacity)
                     {
                         continue;
@@ -80,7 +88,7 @@ namespace Vehicle_Routing_Problem
                     List<int> candidatesCost = new List<int>();
 
                     //construir lista de candidatos
-                    while (candidates.Count < 2)
+                    while (candidates.Count < RCL_SIZE)
                     {
                         int next = origin[i];
                         int minDistance = int.MaxValue;

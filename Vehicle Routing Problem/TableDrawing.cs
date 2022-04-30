@@ -15,6 +15,11 @@ namespace Vehicle_Routing_Problem
             Console.WriteLine(new string('-', tableWidth));
         }
 
+        public void PrintSeparatingLine()
+        {
+            Console.WriteLine(new string('+', tableWidth));
+        }
+
         public void PrintRow(params string[] columns)
         {
             int width = (tableWidth - columns.Length) / columns.Length;

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Vehicle_Routing_Problem
 {
+    //Estructura de entorno basada en el algoritmo de búsqueda local 2OPT
     public class _2OPT : EnvironmentStructure
     {
         public Solution LocalSearch(Solution solution, ref int[][] distanceMatrix)
