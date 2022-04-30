@@ -26,7 +26,7 @@ namespace Vehicle_Routing_Problem
             return routes;
         }
 
-        public int getCost()
+        public int GetCost()
         {
             return cost;
         }

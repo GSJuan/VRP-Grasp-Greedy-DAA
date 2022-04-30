@@ -1,130 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Vehicle_Routing_Problem
 {
     internal class Grasp : IAlgorithm
     {
+        private EnvironmentStructure structure;
+        public Grasp(EnvironmentStructure structure)
+        {
+            this.structure = structure;
+        }
         public Solution Solve(Problem problem)
         {
             //int stop = 0;
-            Solution originalSolution;
             Solution bestLocal;
-            Solution local;
             Solution bestSolution;
-            Solution microLocal;
+
             int limit = 0;
-            List<EnvironmentStructure> structure = new List<EnvironmentStructure>();
+            EnvironmentStructure structure = this.structure;
             int[][] distanceMatrix = problem.distanceMatrix;
-            structure.Add(new ReinsercionEntre());
-            structure.Add(new ReinsercionIntra());
-            structure.Add(new IntercambioEntre());
-            structure.Add(new IntercambioIntra());
+ 
             //structure.Add(new _2OPT());
-            
+
             //preprocesamiento
-
-            originalSolution  = ConstructGreedyRandomizedSolution(problem);
-            bestLocal = originalSolution;
+            bestLocal = ConstructGreedyRandomizedSolution(problem);
             bestSolution = bestLocal;
-
-            while (limit <= 2000) {
+            
+            //GRASP
+            while (limit <= 2000)
+            {
                 limit++;
-                int k = 0;
-                do
-                {
-                    int l = 0;
-                    Solution shaked = Shaking(k, bestLocal, ref distanceMatrix);
-                    local = shaked;
-                    do
-                    {
-                        microLocal = structure[l].LocalSearch(local, ref distanceMatrix);
+                bestLocal = structure.LocalSearch(bestLocal, ref distanceMatrix);
 
-                        if (microLocal.getCost() < local.getCost())
-                        {
-                            local = microLocal;
-                            l = 0;
-                        }
-                        else
-                        {
-                            l++;
-                        }
-                    } while (l < structure.Count);
-
-
-                    if (local.getCost() < bestLocal.getCost())
-                    {
-                        bestLocal = local;
-                        k = 0;
-                    }
-                    else
-                    {
-                        k++;
-                    }
-                } while (k < structure.Count);
-                
-                if (bestLocal.getCost() < bestSolution.getCost())
+                if (bestLocal.GetCost() < bestSolution.GetCost())
                 {
                     bestSolution = bestLocal;
-                    limit = 0;
-                }
-
+                    //limit = 0;
+                }                
                 bestLocal = ConstructGreedyRandomizedSolution(problem);                
-            } 
+            }
 
             return bestSolution;
-        }
-
-        private Solution Shaking(int k, Solution ogSolution, ref int[][] distanceMatrix)
-        {
-            int capacity = 24;
-            int minimumCapacity = 3;
-            Random rnd = new Random();
-            List<string> movements = new List<string>();
-            Solution solution = new Solution(ogSolution);
-            
-            for (int i = 0; i <= k; i++)
-            {
-                int routeIndex;
-                int otherRouteIndex;
-
-                do
-                {
-                    routeIndex = rnd.Next(0, solution.getRoutes().Count);
-                    otherRouteIndex = rnd.Next(0, solution.getRoutes().Count);
-
-                } while (otherRouteIndex == routeIndex || solution.getRoutes()[otherRouteIndex].Count >= capacity || solution.getRoutes()[routeIndex].Count <= minimumCapacity);
-
-                List<int> route = solution.getRoutes()[routeIndex];
-                List<int> otherRoute = solution.getRoutes()[otherRouteIndex];
-
-                int originIndex;
-                int destinationIndex;
-                do
-                {
-                     originIndex = rnd.Next(1, route.Count - 1);
-                     destinationIndex = rnd.Next(1, otherRoute.Count - 1);
-                } while (movements.Contains(routeIndex.ToString() + otherRouteIndex.ToString() + originIndex.ToString() + destinationIndex.ToString()));
-
-
-                int temp = route[originIndex];
-                
-                solution.cost -= distanceMatrix[route[originIndex - 1]][route[originIndex]];
-                solution.cost -= distanceMatrix[route[originIndex]][route[originIndex + 1]];
-                solution.cost += distanceMatrix[route[originIndex - 1]][route[originIndex + 1]];                
-                
-                route.RemoveAt(originIndex);
-                otherRoute.Insert(destinationIndex, temp);
-                
-                solution.cost += distanceMatrix[otherRoute[destinationIndex - 1]][otherRoute[destinationIndex]];
-                solution.cost += distanceMatrix[otherRoute[destinationIndex]][otherRoute[destinationIndex + 1]];
-                solution.cost -= distanceMatrix[otherRoute[destinationIndex - 1]][otherRoute[destinationIndex +1]];
-
-                movements.Add(routeIndex.ToString() + otherRouteIndex.ToString()  + originIndex.ToString() + destinationIndex.ToString());
-            }
-            return solution;
         }
 
         private Solution ConstructGreedyRandomizedSolution(Problem problem)
@@ -157,7 +74,7 @@ namespace Vehicle_Routing_Problem
                     if (routes[i].Count > capacity)
                     {
                         continue;
-                    } 
+                    }
 
                     List<int> candidates = new List<int>();
                     List<int> candidatesCost = new List<int>();
@@ -177,22 +94,22 @@ namespace Vehicle_Routing_Problem
                                 next = j;
                             }
                         }
-                        
-                        if(next == origin[i])
+
+                        if (next == origin[i])
                         {
                             break;
                         }
-                        
+
                         candidates.Add(next);
                         candidatesCost.Add(minDistance);
                     }
-                    
+
 
                     if (candidates.Count == 0)
                     {
                         break;
                     }
-                    
+
                     int index = rnd.Next(candidates.Count);
                     int nextCustomer = candidates[index];
                     visited.Add(nextCustomer);
