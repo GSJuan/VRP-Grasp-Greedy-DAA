@@ -20,11 +20,24 @@ namespace Vehicle_Routing_Problem
             for (int i = 0; i < size; i++)
             {
                 List<int> route = solution.routes[i];
+                if(route.Count <= 3)
+                {
+                    continue;
+                }
                 
                 for (int w = 1; w < size; w++)
                 {
                     int otherRouteIndex = i + w;
-                    if (otherRouteIndex >= size) { otherRouteIndex = otherRouteIndex % size; }
+                    
+                    if (otherRouteIndex >= size) { 
+                        otherRouteIndex = otherRouteIndex % size; 
+                    }
+
+                    if (solution.routes[otherRouteIndex].Count >= 24)
+                    {
+                        continue;
+                    }
+
                     List<int> otherRoute = solution.routes[otherRouteIndex];
 
                     for (int j = 1; j < route.Count - 1; j++)
@@ -41,8 +54,6 @@ namespace Vehicle_Routing_Problem
 
                             int fromNextCost = distanceMatrix[otherRoute[k - 1]][route[j]];
                             int toNextCost = distanceMatrix[route[j]][otherRoute[k]];
-
-                            
 
                             int newCost = cost - fromPreviousCost - toPreviousCost - destinationPreviousCost;
                             newCost += originNextCost + fromNextCost + toNextCost;

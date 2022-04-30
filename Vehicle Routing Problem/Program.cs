@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Vehicle_Routing_Problem
@@ -13,7 +14,9 @@ namespace Vehicle_Routing_Problem
             TableDrawing table = new TableDrawing(50);
             TableDrawing bigTable = new TableDrawing(75);
 
-            table.PrintRow("FileName", "Algorithm", "Cost");
+            table.PrintRow("FileName", "Algorithm", "Cost", "Time in ms");
+
+            Stopwatch timer = new Stopwatch();
 
             foreach (string filePath in Directory.GetFiles(folderPath, "*.txt"))
             {
@@ -21,7 +24,9 @@ namespace Vehicle_Routing_Problem
                 Problem problema = new Problem(filePath);
 
                 Greedy greedy = new Greedy();
+                timer.Restart();
                 Solution greedyResult = greedy.Solve(problema);
+                timer.Stop();
                 int greedyCost = greedyResult.getCost();
 
                 /*
@@ -38,16 +43,18 @@ namespace Vehicle_Routing_Problem
                 Console.WriteLine("Total Greedy Cost: " + greedyCost);
                 */
                 
-                table.PrintRow(name[name.Length - 1], "Greedy", greedyCost.ToString());
+                table.PrintRow(name[name.Length - 1], "Greedy", greedyCost.ToString(), $"{timer.ElapsedMilliseconds}");
                 table.PrintLine();
 
                 Grasp grasp = new Grasp();
+                timer.Restart();
                 Solution graspResult = grasp.Solve(problema);
+                timer.Stop();
                 int graspCost = graspResult.getCost();
 
                 //int graspCalculatedCost = graspResult.calculateCost(ref problema.distanceMatrix);
 
-                //if(graspCalculatedCost == graspCost)
+                //if (graspCalculatedCost == graspCost)
                 //{
                 //    Console.WriteLine("TRUE, " + graspCost.ToString() + " == " + graspCalculatedCost.ToString());
                 //}
@@ -68,7 +75,7 @@ namespace Vehicle_Routing_Problem
                 //}
                 //Console.WriteLine("Total Grasp Cost: " + graspCost);
 
-                table.PrintRow(name[name.Length - 1], "Grasp", graspCost.ToString());
+                table.PrintRow(name[name.Length - 1], "GVNS", graspCost.ToString(), $"{timer.ElapsedMilliseconds}" );
                 bigTable.PrintLine();
 
             }

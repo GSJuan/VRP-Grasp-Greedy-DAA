@@ -13,7 +13,24 @@ namespace Vehicle_Routing_Problem
         
         public List<int> OPTSwap (ref List<int> route, int i , int k)
         {
-            return route;
+            List<int> newRoute = new List<int>();
+
+            for (int j = 0; j < i; j++)
+            {
+                newRoute.Add(route[j]);
+            }
+
+            for (int j = k; j >= i; j--)
+            {
+                newRoute.Add(route[j]);
+            }
+
+            for (int j = k + 1; j < route.Count; j++)
+            {
+                newRoute.Add(route[j]);
+            }
+            
+            return newRoute;
         }
     }
 }
