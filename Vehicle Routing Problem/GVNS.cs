@@ -34,8 +34,7 @@ namespace Vehicle_Routing_Problem
                 int k = 0;
                 //GVNS
                 do
-                {
-                    
+                {                    
                     //SHAKING
                     Solution shaked = Shaking(k, bestLocal, ref distanceMatrix);
                     

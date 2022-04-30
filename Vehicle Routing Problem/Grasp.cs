@@ -16,8 +16,8 @@ namespace Vehicle_Routing_Problem
         public Solution Solve(Problem problem)
         {
             Solution bestLocal;
+            Solution local;
             Solution bestSolution;
-
             int limit = 0;
             EnvironmentStructure structure = this.structure;
             int[][] distanceMatrix = problem.distanceMatrix;
@@ -31,8 +31,21 @@ namespace Vehicle_Routing_Problem
             {
                 limit++;
 
+
+                bool improve;
                 //Fase de mejora
-                bestLocal = structure.LocalSearch(bestLocal, ref distanceMatrix);
+                do
+                {
+                    improve = false;
+                    local = structure.LocalSearch(bestLocal, ref distanceMatrix);
+
+                    if (local.GetCost() < bestLocal.GetCost())
+                    {
+                        bestLocal = local;
+                        improve = true;
+                    }
+
+                } while (improve);
 
                 //fase de actualización
                 if (bestLocal.GetCost() < bestSolution.GetCost())
