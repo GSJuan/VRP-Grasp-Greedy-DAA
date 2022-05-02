@@ -13,7 +13,7 @@ namespace Vehicle_Routing_Problem
             Solution local;
             Solution bestSolution;
             Solution microLocal;
-            
+            int K_MAX = 7;
             int limit = 0;
             int[][] distanceMatrix = problem.distanceMatrix;
 
@@ -66,7 +66,7 @@ namespace Vehicle_Routing_Problem
                     {
                         k++;
                     }
-                } while (k < structure.Count);
+                } while (k < K_MAX);
                 
                 if (bestLocal.GetCost() < bestSolution.GetCost())
                 {
@@ -137,6 +137,8 @@ namespace Vehicle_Routing_Problem
             int vehicles = problem.nbVehicles;
             int customers = problem.nbCustomers;
 
+            int RCP_MAX = 3;
+
             int capacity = (int)((customers / vehicles) + (customers * 0.1));
 
             List<List<int>> routes = new List<List<int>>();
@@ -167,7 +169,7 @@ namespace Vehicle_Routing_Problem
                     List<int> candidatesCost = new List<int>();
 
                     //construir lista de candidatos
-                    while (candidates.Count < 2)
+                    while (candidates.Count < RCP_MAX)
                     {
                         int next = origin[i];
                         int minDistance = int.MaxValue;
