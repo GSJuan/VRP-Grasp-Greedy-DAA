@@ -40,21 +40,24 @@ namespace Vehicle_Routing_Problem
                     
                     //VND
                     local = shaked;
-                    int l = 0;                   
-                    do
-                    {
-                        microLocal = structure[l].LocalSearch(local, ref distanceMatrix);
 
-                        if (microLocal.GetCost() < local.GetCost())
-                        {
-                            local = microLocal;
-                            l = 0;
-                        }
-                        else
-                        {
-                            l++;
-                        }
-                    } while (l < structure.Count);
+                    // MODIFICACION
+                    
+                    for (int i = 0; i < structure.Count; i++)
+                    {
+                        microLocal = structure[i].LocalSearch(local, ref distanceMatrix);                      
+                        local = microLocal;                        
+                    } 
+                    
+
+                    // OTRO ORDEN
+                    /*
+                    for (int i = structure.Count - 1; i >= 0 ; i--)
+                    {
+                        microLocal = structure[i].LocalSearch(local, ref distanceMatrix);
+                        local = microLocal;
+                    }
+                    */
 
 
                     if (local.GetCost() < bestLocal.GetCost())

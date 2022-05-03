@@ -8,24 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Juan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\skate\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juan\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\Vehicle Routing Problem.csproj",
+      "projectUniqueName": "C:\\Users\\skate\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\Vehicle Routing Problem.csproj",
       "projectName": "Vehicle Routing Problem",
-      "projectPath": "C:\\Users\\Juan\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\Vehicle Routing Problem.csproj",
-      "packagesPath": "C:\\Users\\Juan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juan\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\obj\\",
+      "projectPath": "C:\\Users\\skate\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\Vehicle Routing Problem.csproj",
+      "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\skate\\source\\repos\\VRP-Grasp-Greedy-DAA\\Vehicle Routing Problem\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\skate\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
